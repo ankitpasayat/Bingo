@@ -72,8 +72,10 @@ public class Bingo {
                 else
                     continue;
                 index1 = findIndex(NUM1, num);
+                NUM1[index1] = 0;
                 System.out.println("INDEX 1: " + index1);
                 index2 = findIndex(NUM2, num);
+                NUM2[index2] = 0;
                 System.out.println("INDEX 2: " + index2);
                 curr_column = index1 % 5;
                 curr_row = 0;
@@ -95,34 +97,57 @@ public class Bingo {
                 System.out.println("CURRENT COLUMN 2: " + curr_column);
                 row2[curr_row]++;
                 column2[curr_column]++;
-                for(int k = 0; k < 5; k++){
-                    System.out.println("ROW_1[" + k +"]: " + row1[k] + " COL_1[" + k +"]: " + column1[k]);
+                c = 0;
+                System.out.println("MATRIX 1:  ");
+                for(int i = 0; i < 5; i++){
+                    for(int j = 0; j < 5; j++){
+                        if(NUM1[c] == 0){
+                            System.out.print("X ");
+                            c++;
+                            continue;
+                        }
+                        System.out.print(NUM1[c++] + " ");
+                    }
+                    System.out.println();
                 }
                 System.out.println();
-                for(int k = 0; k < 5; k++){
-                    System.out.println("ROW_2[" + k +"]: " + row2[k] + " COL_2[" + k +"]: " + column2[k]);
+                c = 0;
+                System.out.println("MATRIX 2:  ");
+                for(int i = 0; i < 5; i++){
+                    for(int j = 0; j < 5; j++){
+                        if(NUM2[c] == 0){
+                            System.out.print("X ");
+                            c++;
+                            continue;
+                        }
+                        System.out.print(NUM2[c++] + " ");
+                    }
+                    System.out.println();
                 }
                 System.out.println();
                 row_status1 = check_row(row1);
                 col_status1 = check_col(column1);
                 row_status2 = check_row(row2);
                 col_status2 = check_col(column2);
-                if(row_status1 > 0){
+                if(row_status1 < 6){
                     bingo1++;
                     row1[row_status1] = 0;
                 }
-                if(col_status1 > 0){
+                if(col_status1 < 6){
                     bingo1++;
                     column1[col_status1] = 0;
                 }
-                if(row_status2 > 0){
+                if(row_status2 < 6){
                     bingo2++;
                     row2[row_status2] = 0;
                 }
-                if(col_status2 > 0){
+                if(col_status2 < 6){
                     bingo2++;
                     column2[col_status2] = 0;
                 }
+                System.out.println("BINGO 1: " + bingo1);
+                System.out.println("BINGO 2: " + bingo2);
+                System.out.println();
                 if(bingo1 == 5){
                     System.out.println("USER WINS!!!");
                     break;
@@ -134,16 +159,18 @@ public class Bingo {
             }
             else{
                 num = (int)(Math.random()*25) + 1;
-                System.out.println("Computer's number: " + num);
                 if(!containsVal(used, num)){
                     used[u++] = num;
                     t++;
                 }
                 else
                     continue;
+                System.out.println("Computer's number: " + num);
                 index1 = findIndex(NUM1, num);
+                NUM1[index1] = 0;
                 System.out.println("INDEX 1: " + index1);
                 index2 = findIndex(NUM2, num);
+                NUM2[index2] = 0;
                 System.out.println("INDEX 2: " + index2);
                 curr_column = index1 % 5;
                 curr_row = 0;
@@ -165,40 +192,63 @@ public class Bingo {
                 System.out.println("CURRENT COLUMN 2: " + curr_column);
                 row2[curr_row]++;
                 column2[curr_column]++;
-                for(int k = 0; k < 5; k++){
-                    System.out.println("ROW_1[" + k +"]: " + row1[k] + " COL_1[" + k +"]: " + column1[k]);
+                c = 0;
+                System.out.println("MATRIX 1:  ");
+                for(int i = 0; i < 5; i++){
+                    for(int j = 0; j < 5; j++){
+                        if(NUM1[c] == 0){
+                            System.out.print("X ");
+                            c++;
+                            continue;
+                        }
+                        System.out.print(NUM1[c++] + " ");
+                    }
+                    System.out.println();
                 }
                 System.out.println();
-                for(int k = 0; k < 5; k++){
-                    System.out.println("ROW_2[" + k +"]: " + row2[k] + " COL_2[" + k +"]: " + column2[k]);
+                c = 0;
+                System.out.println("MATRIX 2:  ");
+                for(int i = 0; i < 5; i++){
+                    for(int j = 0; j < 5; j++){
+                        if(NUM2[c] == 0){
+                            System.out.print("X ");
+                            c++;
+                            continue;
+                        }
+                        System.out.print(NUM2[c++] + " ");
+                    }
+                    System.out.println();
                 }
                 System.out.println();
                 row_status1 = check_row(row1);
                 col_status1 = check_col(column1);
                 row_status2 = check_row(row2);
                 col_status2 = check_col(column2);
-                if(row_status1 > 0){
+                if(row_status1 < 6){
                     bingo1++;
                     row1[row_status1] = 0;
                 }
-                if(col_status1 > 0){
+                if(col_status1 < 6){
                     bingo1++;
                     column1[col_status1] = 0;
                 }
-                if(row_status2 > 0){
+                if(row_status2 < 6){
                     bingo2++;
                     row2[row_status2] = 0;
                 }
-                if(col_status2 > 0){
+                if(col_status2 < 6){
                     bingo2++;
                     column2[col_status2] = 0;
                 }
-                if(bingo1 == 5){
-                    System.out.println("USER WINS!!!");
-                    break;
-                }
+                System.out.println("BINGO 1: " + bingo1);
+                System.out.println("BINGO 2: " + bingo2);
+                System.out.println();
                 if(bingo2 == 5){
                     System.out.println("COMPUTER WINS!!!");
+                    break;
+                }
+                if(bingo1 == 5){
+                    System.out.println("USER WINS!!!");
                     break;
                 }
             }
@@ -227,7 +277,7 @@ public class Bingo {
             if(row[i] == 5)
                 return i;
         }
-        return 0;
+        return 6;
     }
 
     public static int check_col(int[] column) {
@@ -235,6 +285,6 @@ public class Bingo {
             if(column[i] == 5)
                 return i;
         }
-        return 0;
+        return 6;
     }
 }
