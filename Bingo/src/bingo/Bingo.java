@@ -61,6 +61,12 @@ public class Bingo {
         row2 = new int[5];
         int[] column2;
         column2 = new int[5];
+        int[] diag1;
+        diag1 = new int[2];
+        int[] diag2;
+        diag2 = new int[2];
+        initialize_diagonal(diag1);
+        initialize_diagonal(diag2);
         for(int t = 0; t < 25;){
             if(t % 2 == 0){
                 System.out.println("Enter your number: ");
@@ -144,6 +150,30 @@ public class Bingo {
                 if(col_status2 < 6){
                     bingo2++;
                     column2[col_status2] = 0;
+                }
+                if(diag1[0] == 0 || diag1[1] == 0){
+                    int lf = diag1[0] == 1 ? 0 : checkLeftDiag(NUM1);
+                    int rt = diag1[1] == 1 ? 0 : checkLeftDiag(NUM1);
+                    if(lf == 1){
+                        diag1[0] = 1;
+                        bingo1++;
+                    }
+                    if(rt == 1){
+                        diag1[1] = 1;
+                        bingo1++;
+                    }
+                }
+                if(diag2[0] == 0 || diag2[1] == 0){
+                    int lf = diag2[0] == 1 ? 0 : checkLeftDiag(NUM2);
+                    int rt = diag2[1] == 1 ? 0 : checkLeftDiag(NUM2);
+                    if(lf == 1){
+                        diag2[0] = 1;
+                        bingo2++;
+                    }
+                    if(rt == 1){
+                        diag2[1] = 1;
+                        bingo2++;
+                    }
                 }
                 System.out.println("BINGO 1: " + bingo1);
                 System.out.println("BINGO 2: " + bingo2);
@@ -240,6 +270,31 @@ public class Bingo {
                     bingo2++;
                     column2[col_status2] = 0;
                 }
+                
+                if(diag1[0] == 0 || diag1[1] == 0){
+                    int lf = diag1[0] == 1 ? 0 : checkLeftDiag(NUM1);
+                    int rt = diag1[1] == 1 ? 0 : checkLeftDiag(NUM1);
+                    if(lf == 1){
+                        diag1[0] = 1;
+                        bingo1++;
+                    }
+                    if(rt == 1){
+                        diag1[1] = 1;
+                        bingo1++;
+                    }
+                }
+                if(diag2[0] == 0 || diag2[1] == 0){
+                    int lf = diag2[0] == 1 ? 0 : checkLeftDiag(NUM2);
+                    int rt = diag2[1] == 1 ? 0 : checkLeftDiag(NUM2);
+                    if(lf == 1){
+                        diag2[0] = 1;
+                        bingo2++;
+                    }
+                    if(rt == 1){
+                        diag2[1] = 1;
+                        bingo2++;
+                    }
+                }
                 System.out.println("BINGO 1: " + bingo1);
                 System.out.println("BINGO 2: " + bingo2);
                 System.out.println();
@@ -286,5 +341,26 @@ public class Bingo {
                 return i;
         }
         return 6;
+    }
+
+    private static int checkLeftDiag(int[] NUM) {
+        for(int i = 0; i < 25; i += 6){
+            if(NUM[i] != 0)
+                return 0;
+        }
+        return 1;
+    }
+
+    private static int checkRightDiag(int[] NUM) {
+        for(int i = 4; i < 25; i += 4){
+            if(NUM[i] != 0)
+                return 0;
+        }
+        return 1;
+    }
+
+    private static void initialize_diagonal(int[] diag) {
+        diag[0] = 0;
+        diag[1] = 0;
     }
 }
