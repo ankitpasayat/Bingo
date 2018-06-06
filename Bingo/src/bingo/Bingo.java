@@ -33,24 +33,10 @@ public class Bingo {
                 NUM2[i++] = temp;
             }
         }
-        int c = 0;
         System.out.println("MATRIX 1:  ");
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-                System.out.print(NUM1[c++] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-        c = 0;
+        print_matrix(NUM1);
         System.out.println("MATRIX 2:  ");
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-                System.out.print(NUM2[c++] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
+        print_matrix(NUM2);
         int u = 0, row_status1, col_status1, row_status2, col_status2, num, index1, index2, curr_row, curr_column;
         int bingo1 = 0, bingo2 = 0;
         int[] row1;
@@ -103,34 +89,10 @@ public class Bingo {
                 System.out.println("CURRENT COLUMN 2: " + curr_column);
                 row2[curr_row]++;
                 column2[curr_column]++;
-                c = 0;
                 System.out.println("MATRIX 1:  ");
-                for(int i = 0; i < 5; i++){
-                    for(int j = 0; j < 5; j++){
-                        if(NUM1[c] == 0){
-                            System.out.print("X ");
-                            c++;
-                            continue;
-                        }
-                        System.out.print(NUM1[c++] + " ");
-                    }
-                    System.out.println();
-                }
-                System.out.println();
-                c = 0;
+                print_matrix(NUM1);
                 System.out.println("MATRIX 2:  ");
-                for(int i = 0; i < 5; i++){
-                    for(int j = 0; j < 5; j++){
-                        if(NUM2[c] == 0){
-                            System.out.print("X ");
-                            c++;
-                            continue;
-                        }
-                        System.out.print(NUM2[c++] + " ");
-                    }
-                    System.out.println();
-                }
-                System.out.println();
+                print_matrix(NUM2);
                 row_status1 = check_row(row1);
                 col_status1 = check_col(column1);
                 row_status2 = check_row(row2);
@@ -153,7 +115,7 @@ public class Bingo {
                 }
                 if(diag1[0] == 0 || diag1[1] == 0){
                     int lf = diag1[0] == 1 ? 0 : checkLeftDiag(NUM1);
-                    int rt = diag1[1] == 1 ? 0 : checkLeftDiag(NUM1);
+                    int rt = diag1[1] == 1 ? 0 : checkRightDiag(NUM1);
                     if(lf == 1){
                         diag1[0] = 1;
                         bingo1++;
@@ -165,7 +127,7 @@ public class Bingo {
                 }
                 if(diag2[0] == 0 || diag2[1] == 0){
                     int lf = diag2[0] == 1 ? 0 : checkLeftDiag(NUM2);
-                    int rt = diag2[1] == 1 ? 0 : checkLeftDiag(NUM2);
+                    int rt = diag2[1] == 1 ? 0 : checkRightDiag(NUM2);
                     if(lf == 1){
                         diag2[0] = 1;
                         bingo2++;
@@ -178,12 +140,7 @@ public class Bingo {
                 System.out.println("BINGO 1: " + bingo1);
                 System.out.println("BINGO 2: " + bingo2);
                 System.out.println();
-                if(bingo1 == 5){
-                    System.out.println("USER WINS!!!");
-                    break;
-                }
-                if(bingo2 == 5){
-                    System.out.println("COMPUTER WINS!!!");
+                if(check_bingo(t, bingo1, bingo2)){
                     break;
                 }
             }
@@ -222,34 +179,10 @@ public class Bingo {
                 System.out.println("CURRENT COLUMN 2: " + curr_column);
                 row2[curr_row]++;
                 column2[curr_column]++;
-                c = 0;
                 System.out.println("MATRIX 1:  ");
-                for(int i = 0; i < 5; i++){
-                    for(int j = 0; j < 5; j++){
-                        if(NUM1[c] == 0){
-                            System.out.print("X ");
-                            c++;
-                            continue;
-                        }
-                        System.out.print(NUM1[c++] + " ");
-                    }
-                    System.out.println();
-                }
-                System.out.println();
-                c = 0;
+                print_matrix(NUM1);
                 System.out.println("MATRIX 2:  ");
-                for(int i = 0; i < 5; i++){
-                    for(int j = 0; j < 5; j++){
-                        if(NUM2[c] == 0){
-                            System.out.print("X ");
-                            c++;
-                            continue;
-                        }
-                        System.out.print(NUM2[c++] + " ");
-                    }
-                    System.out.println();
-                }
-                System.out.println();
+                print_matrix(NUM2);
                 row_status1 = check_row(row1);
                 col_status1 = check_col(column1);
                 row_status2 = check_row(row2);
@@ -273,7 +206,7 @@ public class Bingo {
                 
                 if(diag1[0] == 0 || diag1[1] == 0){
                     int lf = diag1[0] == 1 ? 0 : checkLeftDiag(NUM1);
-                    int rt = diag1[1] == 1 ? 0 : checkLeftDiag(NUM1);
+                    int rt = diag1[1] == 1 ? 0 : checkRightDiag(NUM1);
                     if(lf == 1){
                         diag1[0] = 1;
                         bingo1++;
@@ -285,7 +218,7 @@ public class Bingo {
                 }
                 if(diag2[0] == 0 || diag2[1] == 0){
                     int lf = diag2[0] == 1 ? 0 : checkLeftDiag(NUM2);
-                    int rt = diag2[1] == 1 ? 0 : checkLeftDiag(NUM2);
+                    int rt = diag2[1] == 1 ? 0 : checkRightDiag(NUM2);
                     if(lf == 1){
                         diag2[0] = 1;
                         bingo2++;
@@ -298,12 +231,7 @@ public class Bingo {
                 System.out.println("BINGO 1: " + bingo1);
                 System.out.println("BINGO 2: " + bingo2);
                 System.out.println();
-                if(bingo2 == 5){
-                    System.out.println("COMPUTER WINS!!!");
-                    break;
-                }
-                if(bingo1 == 5){
-                    System.out.println("USER WINS!!!");
+                if(check_bingo(t, bingo2, bingo1)){
                     break;
                 }
             }
@@ -362,5 +290,41 @@ public class Bingo {
     private static void initialize_diagonal(int[] diag) {
         diag[0] = 0;
         diag[1] = 0;
+    }
+
+    private static void print_matrix(int[] NUM) {
+        int c = 0;
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 5; j++){
+                if(NUM[c] == 0){
+                    System.out.print("X ");
+                    c++;
+                    continue;
+                }
+                System.out.print(NUM[c++] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    private static boolean check_bingo(int t, int bingo1, int bingo2) {
+        if(bingo1 == 5){
+            if(t%2 == 0){
+                System.out.println("COMPUTER WINS!!!");
+                return true;
+            }
+            System.out.println("USER WINS!!!");
+            return true;
+        }
+        if(bingo2 == 5){
+            if(t % 2 == 0){
+                System.out.println("USER WINS!!!");
+                return true;
+            }
+            System.out.println("COMPUTER WINS!!!");
+            return true;
+        }
+        return false;
     }
 }
