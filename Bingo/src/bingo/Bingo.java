@@ -287,7 +287,7 @@ public class Bingo {
         return n + 1;
     }
 
-    private static int checkLeftDiag(int[] NUM) {
+    public static int checkLeftDiag(int[] NUM) {
         for(int i = 0; i < n2; i += (n + 1)){
             if(NUM[i] != 0)
                 return 0;
@@ -295,7 +295,7 @@ public class Bingo {
         return 1;
     }
 
-    private static int checkRightDiag(int[] NUM) {
+    public static int checkRightDiag(int[] NUM) {
         for(int i = n - 1; i < n2; i += (n - 1)){
             if(NUM[i] != 0)
                 return 0;
@@ -303,12 +303,12 @@ public class Bingo {
         return 1;
     }
 
-    private static void initialize_diagonal(int[] diag) {
+    public static void initialize_diagonal(int[] diag) {
         diag[0] = 0;
         diag[1] = 0;
     }
 
-    private static void print_matrix(int[] NUM) {
+    public static void print_matrix(int[] NUM) {
         int c = 0;
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
@@ -324,7 +324,7 @@ public class Bingo {
         System.out.println();
     }
 
-    private static boolean check_bingo(int t, int bingo1, int bingo2) {
+    public static boolean check_bingo(int t, int bingo1, int bingo2) {
         if(bingo1 == n){
             if(t%2 == 0){
                 System.out.println("COMPUTER WINS!!!");
@@ -344,7 +344,7 @@ public class Bingo {
         return false;
     }
 
-    private static void startGame() {
+    public static void startGame() {
         System.out.println("ENTER BOARD LENGTH: ");
         Scanner sc = new Scanner(System.in);
         n = Integer.parseInt(sc.nextLine());
